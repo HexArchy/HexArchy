@@ -1,6 +1,6 @@
 ## <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=26&pause=1000&color=F7F7F7&center=true&vCenter=true&random=false&width=600&lines=Hi%2C+I+am+GoLang+Developer+and+welcome!" alt="Typing SVG" /></a>
 
-In this profile you can find all possible assignments for ITMO University, internship assignments and my pet projects. Leave pool requests, you can write to me in telegram, and of course to mail. 
+Go developer and cybersecurity student at ITMO University. Here you'll find my pet projects, university assignments.
 
 <br>
 
@@ -46,9 +46,3 @@ Skills: `Databases` `Requirements Engineering` `Software Architecture` `Linear A
 <a href="https://www.youtube.com/c/UC9Dit4USy6RpKKntYVz9bTw" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/youtube.svg" alt="hierarch" height="30" width="40" /></a>
 <a href="https://discord.gg/mfm9BpEVGh" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/discord.svg" alt="tgs_prod" height="30" width="40" /></a>
 </p>
-
-<br>
-
-## Statistics
-<p><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=hexarchy&show_icons=true&locale=en&layout=compact" alt="HexArchy" /></p>
-<br>

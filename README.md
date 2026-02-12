@@ -41,8 +41,5 @@ Skills: `Databases` `Requirements Engineering` `Software Architecture` `Linear A
 
 ## Contacts 
 <p align="left">
-<a href="https://twitter.com/nikitabelekov" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="nikitabelekov" height="30" width="40" /></a>
-<a href="https://instagram.com/nikitabelekov" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="nikitabelekov" height="30" width="40" /></a>
-<a href="https://www.youtube.com/c/UC9Dit4USy6RpKKntYVz9bTw" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/youtube.svg" alt="hierarch" height="30" width="40" /></a>
-<a href="https://discord.gg/mfm9BpEVGh" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/discord.svg" alt="tgs_prod" height="30" width="40" /></a>
+<a href="https://t.me/nikitabelekov" target="blank"><img align="center" src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white" alt="telegram" /></a>
 </p>

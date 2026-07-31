@@ -1,8 +1,12 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:00ADD8,100:5A3E85&height=200&section=header&text=Nikita%20Belyakov&fontSize=52&fontColor=ffffff&fontAlignY=34&desc=Go%20Platform%20Engineer&descAlignY=54&descSize=20" width="100%" alt="Nikita Belyakov — Go Platform Engineer"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:00ADD8,100:5A3E85&height=140&section=header" width="100%" alt=""/>
 
 <div align="center">
 
-<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=23&pause=1200&color=00ADD8&center=true&vCenter=true&width=680&height=45&lines=Internal+developer+platforms;Service+mesh+%26+runtime+traffic+control;DBaaS+%E2%80%94+100%2B+clusters%2C+days+to+minutes;MCP+infrastructure+for+AI+coding+agents" alt="Typing SVG" /></a>
+# Nikita Belyakov
+
+### Go Platform Engineer
+
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=23&pause=1200&color=00ADD8&center=true&vCenter=true&width=680&height=45&lines=Internal+developer+platforms;Service+mesh+%26+runtime+traffic+control;DBaaS+%E2%80%94+100%2B+clusters%2C+days+to+minutes;MCP+infrastructure+for+AI+coding+agents" alt="Internal developer platforms · Service mesh and runtime traffic control · DBaaS · MCP infrastructure" /></a>
 
 <br><br>
 

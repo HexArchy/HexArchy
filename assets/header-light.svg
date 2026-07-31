@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" width="1200" height="300" role="img" aria-label="Nikita Belyakov — Go Platform Engineer">
+  <rect width="1200" height="300" fill="#F0EEE6"/>
+
+  <!-- accent rule -->
+  <rect x="72" y="72" width="56" height="4" fill="#D97757"/>
+
+  <text x="72" y="152" font-family="Georgia, 'Times New Roman', 'Iowan Old Style', serif" font-size="58" fill="#191919">Nikita Belyakov</text>
+
+  <text x="72" y="196" font-family="ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="21" fill="#6B6862">Go Platform Engineer</text>
+
+  <line x1="72" y1="228" x2="1128" y2="228" stroke="#D6D2C4" stroke-width="1"/>
+
+  <text x="72" y="262" font-family="ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="15" fill="#8A867C">service mesh<tspan fill="#D97757" dx="14">/</tspan><tspan dx="14">DBaaS</tspan><tspan fill="#D97757" dx="14">/</tspan><tspan dx="14">developer platforms</tspan><tspan fill="#D97757" dx="14">/</tspan><tspan dx="14">MCP infrastructure</tspan></text>
+
+  <text x="1128" y="262" text-anchor="end" font-family="ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace" font-size="15" fill="#8A867C">Uzbekistan · UTC+5 · remote worldwide</text>
+</svg>

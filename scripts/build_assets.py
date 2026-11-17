@@ -23,14 +23,16 @@ THEMES = {
         strong="#74776f", text="#ecebe6", text2="#b9b8b0", text3="#99988f",
         accent="#5cc8c0", ok="#8ccf6a", shade="#000000", shade_k=0.55,
         clay=("#93d2aa", "#66a985", "#467b5f"), gold=("#f0c35a", "#d9a53a", "#a87a1f"),
-        ink=("#3a3d42", "#2b2e33", "#1e2024"),
+        ink=("#3a3d42", "#2b2e33", "#1e2024"), base=("#20211f", "#191a18", "#151614"),
+        screen="#14201f",
     ),
     "light": dict(
         bg="#f6f5f1", surface="#ffffff", surface2="#ecebe6", border="#d6d4cc",
         strong="#85837a", text="#1b1b19", text2="#45443f", text3="#63615a",
         accent="#0a6a66", ok="#2f6f14", shade="#000000", shade_k=0.17,
         clay=("#8ccca4", "#61a480", "#43775b"), gold=("#eebf52", "#d39f33", "#a3761c"),
-        ink=("#4a4d52", "#33363b", "#232529"),
+        ink=("#4a4d52", "#33363b", "#232529"), base=("#ffffff", "#e3e1d9", "#d2d0c7"),
+        screen="#1d2b2a",
     ),
 }
 MONO = "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace"
@@ -86,6 +88,16 @@ BASE_CSS = """
 @keyframes nudgex{0%,60%,100%{transform:none}30%{transform:translateX(4px)}}
 .halo{transform-box:fill-box;transform-origin:center;animation:halo 2.8s ease-out infinite}
 @keyframes halo{0%{opacity:.5;transform:scale(1)}70%,100%{opacity:0;transform:scale(2.6)}}
+.flow{animation:flow 2.4s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-100}}
+.restart{animation:restart 9.6s cubic-bezier(.3,1.3,.5,1) infinite}
+@keyframes restart{0%,58%{transform:none;opacity:1}63%{transform:translateY(5px);opacity:0}64%{transform:translateY(-46px);opacity:0}76%,100%{transform:none;opacity:1}}
+.warn{opacity:0;animation:warn 9.6s linear infinite}
+@keyframes warn{0%,50%{opacity:0}52%,74%{opacity:1}78%,100%{opacity:0}}
+.lift{animation:lift 4.8s ease-in-out infinite}
+@keyframes lift{0%,55%,100%{transform:none}25%{transform:translateY(-9px)}}
+.blink{animation:blink 1.2s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}
 """
 
@@ -208,14 +220,94 @@ def scene(t: dict, cx: float, cy: float, R: float, labels: list[str] | None, cou
     return "".join(o)
 
 
-LABELS = ["mesh", "dbaas", "gitops", "postgres", "tooling", "k8s", "go", "mcp"]
+def workshop(t: dict, ox: float, oy: float, u: float, fs: float) -> str:
+    """Platform workshop: meshed pods with sidecars, a database stack, an MCP gateway, a terminal."""
+    c = Clay(t, ox, oy, u)
+    W, D = 16, 12
+    c.box(0, 0, -.45, W, D, .45, "base")
+    edge = [(0, 0), (W, 0), (W, D), (0, D)]
+    c.raw(f'<path d="{c.ground(edge)}Z" fill="none" stroke="{t["border"]}"/>')
+    for k in range(2, W, 2):
+        c.raw(f'<path d="{c.ground([(k, 0), (k, D)])}" stroke="{t["border"]}" stroke-opacity=".45"/>')
+    for k in range(2, D, 2):
+        c.raw(f'<path d="{c.ground([(0, k), (W, k)])}" stroke="{t["border"]}" stroke-opacity=".45"/>')
+
+    wires = [
+        [(4.4, 2.6), (6.5, 2.6)], [(4.4, 7.6), (6.5, 7.6)], [(2.6, 3.7), (2.6, 6.5)], [(7.6, 3.7), (7.6, 6.5)],
+        [(9.4, 2.6), (11.4, 2.6)], [(9.4, 7.6), (11.2, 7.6)], [(12.9, 7.0), (12.9, 4.3)],
+        [(2.6, 10.3), (2.6, 8.7)], [(4.4, 10.7), (12.9, 10.7), (12.9, 9.2)],
+    ]
+    for k, w in enumerate(wires):
+        d = c.ground(w)
+        c.raw(f'<path d="{d}" fill="none" stroke="{t["strong"]}" stroke-width="{n(u * .12)}" stroke-linecap="round" stroke-linejoin="round"/>'
+              f'<path class="flow" style="animation-delay:-{k * .53:.2f}s;animation-duration:{2.2 + (k % 3) * .5:.1f}s" d="{d}" pathLength="100" fill="none" '
+              f'stroke="{t["accent"]}" stroke-width="{n(u * .22)}" stroke-linecap="round" stroke-dasharray="7 43" stroke-dashoffset="-12"/>')
+
+    halo = f' stroke="{t["bg"]}" stroke-width="{n(fs * .32)}" stroke-linejoin="round" paint-order="stroke"'
+
+    def dot(x, y, z, k, warn=False):
+        cx, cy = c.p(x, y, z)
+        r = u * .2
+        o = f'<circle class="bob" style="animation-delay:-{k * .7:.1f}s" cx="{n(cx)}" cy="{n(cy)}" r="{n(r)}" fill="{t["ok"]}"/>'
+        if warn:
+            o += f'<circle class="warn" cx="{n(cx)}" cy="{n(cy)}" r="{n(r * 1.25)}" fill="{t["gold"][0]}"/>'
+        c.raw(o)
+
+    def pod(x, y, k, restart=False):
+        if restart:
+            c.raw('<g class="restart">')
+        c.box(x, y, 0, 2.2, 2.2, 1.7)
+        c.quad([(x + .35, y + 2.2, 1.05), (x + 1.85, y + 2.2, 1.05), (x + 1.85, y + 2.2, 1.3), (x + .35, y + 2.2, 1.3)], t["clay"][2])
+        if restart:
+            c.raw('</g>')
+        c.box(x + 2.2, y + .75, 0, .7, .7, .95, "gold")
+        dot(x + 1.1, y + 1.1, 2.55, k, restart)
+
+    pod(1.5, 1.5, 0)
+    pod(6.5, 1.5, 1)
+    pod(1.5, 6.5, 2)
+    # database stack: three clay discs, the top one lifts out
+    c.cyl(12.9, 2.9, 0, 1.35, .7, "clay")
+    c.cyl(12.9, 2.9, .95, 1.35, .7, "clay")
+    c.raw('<g class="lift">')
+    c.cyl(12.9, 2.9, 1.9, 1.35, .7, "gold")
+    c.raw('</g>')
+    # terminal
+    tx, ty = 1.4, 10.3
+    c.box(tx, ty, 0, 3.0, .4, 2.1, "ink")
+    c.quad([(tx + .2, ty + .4, .25), (tx + 2.8, ty + .4, .25), (tx + 2.8, ty + .4, 1.9), (tx + .2, ty + .4, 1.9)], t["screen"])
+    for r_, (ln, col) in enumerate([(1.5, t["accent"]), (2.0, t["clay"][0]), (1.1, t["clay"][0])]):
+        z = 1.55 - r_ * .42
+        c.quad([(tx + .4, ty + .4, z), (tx + .4 + ln, ty + .4, z), (tx + .4 + ln, ty + .4, z + .16), (tx + .4, ty + .4, z + .16)], col)
+    c.raw('<g class="blink">')
+    c.quad([(tx + 1.7, ty + .4, .71), (tx + 1.95, ty + .4, .71), (tx + 1.95, ty + .4, .93), (tx + 1.7, ty + .4, .93)], t["gold"][0])
+    c.raw('</g>')
+    pod(6.5, 6.5, 3, restart=True)
+    # MCP gateway: one dark block, three gold ports
+    gx, gy = 11.2, 7.0
+    c.box(gx, gy, 0, 3.4, 2.2, 1.3, "ink")
+    for k in range(3):
+        px = gx + .45 + k * .95
+        c.quad([(px, gy + 2.2, .45), (px + .55, gy + 2.2, .45), (px + .55, gy + 2.2, .85), (px, gy + 2.2, .85)], t["gold"][0])
+    c.box(gx + 1.2, gy + .6, 1.3, 1.0, 1.0, .35, "clay")
+    dot(gx + 1.7, gy + 1.1, 2.3, 4)
+
+    def label(x, y, s, anchor="middle", z=0.0):
+        lx, ly = c.p(x, y, z)
+        c.raw(text(lx, ly, s, fs, t["text2"], MONO, anchor=anchor, extra=halo))
+
+    label(5.2, 5.3, "mesh")
+    label(15.1, 1.2, "dbaas", z=2.2)
+    label(15.4, 9.9, "mcp", z=-.9)
+    label(1.2, 13.1, "tooling", z=.2)
+    return c.svg()
 
 
 def header(t: dict, compact: bool) -> str:
     label = "hexarch — Nikita Belyakov, Go platform engineer: service mesh, DBaaS, developer tooling, MCP infrastructure"
     if not compact:
         w, h = 1200, 440
-        body = panel(t, w, h) + scene(t, 878, 232, 205, LABELS)
+        body = panel(t, w, h) + workshop(t, 872, 74, 22, 16)
         x = 64
         body += status_dot(t, x + 6, 82) + text(x + 22, 88, "Nikita Belyakov · platform engineering in Go", 17, t["text3"], MONO)
         body += title("hexarch", x - 4, 198, 92, t["text"])
@@ -225,7 +317,7 @@ def header(t: dict, compact: bool) -> str:
         body += f'<g class="nudge">{text(x + 31.6 * 17 * .602, 368, "↓", 17, t["text3"], MONO)}</g>'
     else:
         w, h = 720, 760
-        body = panel(t, w, h) + scene(t, 360, 232, 232, LABELS, label_size=21, ball=18)
+        body = panel(t, w, h) + workshop(t, 322, 66, 25, 22)
         x = 44
         body += status_dot(t, x + 8, 446, 7) + text(x + 30, 455, "Nikita Belyakov · Go platform engineer", 25, t["text3"], MONO)
         body += title("hexarch", x - 4, 604, 116, t["text"])
@@ -307,6 +399,12 @@ class Clay:
         """Disc lying on a left-facing wall (plane y = const), centre (x, y, z)."""
         pts = [self.p(x + r * math.cos(a), y, z + r * math.sin(a)) for a in (math.tau * i / 28 for i in range(28))]
         self.o.append(f'<polygon points="{" ".join(f"{n(a)},{n(b)}" for a, b in pts)}" fill="{fill}"/>')
+
+    def raw(self, s: str):
+        self.o.append(s)
+
+    def ground(self, pts, z=0.0) -> str:
+        return "M" + "L".join(f"{n(a)} {n(b)}" for a, b in (self.p(x, y, z) for x, y in pts))
 
     def svg(self) -> str:
         return "".join(self.o)

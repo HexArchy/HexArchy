@@ -1,7 +1,7 @@
 <a href="https://hexarch.me">
   <picture>
-    <source media="(prefers-color-scheme: dark) and (max-width: 1139px)" srcset="assets/header-compact-dark.svg">
-    <source media="(prefers-color-scheme: dark)" srcset="assets/header-dark.svg">
+    <source media="(prefers-color-scheme: dark) and (min-width: 1140px)" srcset="assets/header-dark.svg">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/header-compact-dark.svg">
     <source media="(max-width: 1139px)" srcset="assets/header-compact-light.svg">
     <img src="assets/header-light.svg" alt="hexarch — Nikita Belyakov, Go platform engineer: service mesh, DBaaS, developer tooling, MCP infrastructure" width="100%">
   </picture>
@@ -21,8 +21,8 @@ I build **internal developer platforms** — the layer that lets product teams s
 ### Stack
 
   <picture>
-    <source media="(prefers-color-scheme: dark) and (max-width: 1139px)" srcset="assets/stack-compact-dark.svg">
-    <source media="(prefers-color-scheme: dark)" srcset="assets/stack-dark.svg">
+    <source media="(prefers-color-scheme: dark) and (min-width: 1140px)" srcset="assets/stack-dark.svg">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/stack-compact-dark.svg">
     <source media="(max-width: 1139px)" srcset="assets/stack-compact-light.svg">
     <img src="assets/stack-light.svg" alt="Stack — languages: Go, Swift, TypeScript, C#, Python; platform: Kubernetes, k3s, Flux GitOps, Consul, Docker; data: PostgreSQL, ClickHouse, Redis, Kafka; services: gRPC, MCP, Temporal, OAuth 2; ui & 3D: React, three.js, Vite, SwiftUI" width="100%">
   </picture>
@@ -40,8 +40,8 @@ I build **internal developer platforms** — the layer that lets product teams s
 
 <a href="https://hexarch.me">
   <picture>
-    <source media="(prefers-color-scheme: dark) and (max-width: 1139px)" srcset="assets/site-compact-dark.svg">
-    <source media="(prefers-color-scheme: dark)" srcset="assets/site-dark.svg">
+    <source media="(prefers-color-scheme: dark) and (min-width: 1140px)" srcset="assets/site-dark.svg">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/site-compact-dark.svg">
     <source media="(max-width: 1139px)" srcset="assets/site-compact-light.svg">
     <img src="assets/site-light.svg" alt="hexarch.me — a personal server run as code: k3s and Flux GitOps, with a live 3D map of every service. Take the tour" width="100%">
   </picture>
